@@ -6,10 +6,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Black Rock MC">
+<meta name="apple-mobile-web-app-title" content="Black Rock MC - The Game">
+<meta name="application-name" content="Black Rock MC - The Game">
 <meta name="theme-color" content="#000000">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="hd/emblema_192.png">
+<link rel="apple-touch-icon" href="hd/icone_apple.png">
 <link rel="icon" type="image/png" href="hd/emblema_64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,6 +131,11 @@
     body.controle .volante { left: 6vw; bottom: calc(12vh + var(--u) * 0.15); width: calc(var(--u) * 2.1); }
     body.controle .buzina { left: calc(6vw + var(--u) * 0.71); bottom: calc(12vh + var(--u) * 1.15 + 16px); }
   }
+  /* botão INSTALAR (tela inicial) */
+  #btn-instalar { display: none; position: fixed; top: calc(10px + env(safe-area-inset-top)); left: calc(10px + env(safe-area-inset-left)); z-index: 20;
+    font: 9px 'Press Start 2P', monospace; color: #fff; background: linear-gradient(180deg, #ff8a2a, #e05a00); border: 2px solid #ffd23a; border-radius: 999px;
+    padding: 9px 12px; letter-spacing: 0.06em; box-shadow: 0 0 18px rgba(255,106,0,0.5); cursor: pointer; }
+  #btn-instalar.on { display: block; }
   /* direção por inclinação: some o volante de setas */
   body.inclinar .volante { display: none; }
   #p2-incl { position: absolute; top: 14px; left: 14px; font: 9px 'Press Start 2P', monospace; color: #fff; background: #1e3a6a; border: 2px solid #5ab4ff;
@@ -193,6 +199,7 @@
 </div>
 
 <button class="pilula" id="btn-pausa" type="button">II</button>
+<button id="btn-instalar" type="button">📲 INSTALAR</button>
 
 <div id="convite">
   <div class="caixa">

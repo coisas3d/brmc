@@ -6,6 +6,7 @@ window.INFO = (function () {
 
   // ===== HISTÓRICO DE VERSÕES (a primeira da lista é a versão atual do jogo) =====
   const VERSOES = [
+    ['6.4', ['Novo botão 📲 INSTALAR na tela inicial: o jogo vira um app no celular, com o nome "Black Rock MC - The Game", sem precisar da tag NFC.', 'Passo a passo de instalação para Android e iPhone.']],
     ['6.3', ['O jogo ganhou endereço próprio: coisas3d.github.io/brmc (o endereço antigo das tags NFC continua funcionando e redireciona para cá).', 'Atualizações do jogo agora vão para o ar bem mais rápido.']],
     ['6.2', ['Quem joga sempre usa a velocidade máxima da moto (os 92% dos Rôias valem só para os pilotos do jogo).', 'Sorteio do pedágio saiu do meio da tela: agora aparece no cantinho esquerdo, abaixo do aviso de radar.']],
     ['6.1', ['Marcos das outras cidades: Cachoeira da Pataca e Matriz das Dores em Itaguara, Igreja do Carmo em Carmópolis, catedral de 1787 e casarões em Campanha, o morro do hotel e o Pouso dos Bandeirantes em Pouso Alto, a basílica dos relógios, o mirante da Santa e a Revolução de 1932 em Cruzeiro, a Rua das Palmeiras e a Basílica de São Benedito em Lorena.', 'Textos longos nas caixas (nome do pagador do pedágio, avisos) agora diminuem para caber, sem cortar.']],
@@ -99,6 +100,7 @@ window.INFO = (function () {
       'Precisa de internet para enviar. Multas e tombos entram no tempo!'
     ])) +
     sec('🎖️ Conquistas e capacete dourado', '<p>São 14 desafios, como <b>Romeiro</b> (chegar em Aparecida), <b>Cidadão de bem</b> (viagem sem multa), <b>Pato na chuva</b> e <b>Patrocinador oficial</b> (pagar os 2 pedágios). Algumas conquistas dão o <b>capacete dourado</b> para o piloto usado. Veja em <b>RECORDES → CONQUISTAS</b>.</p>') +
+    sec('📲 Instalar no celular', '<p>Na tela inicial, toque em <b>📲 INSTALAR</b> para colocar o jogo na tela do celular (no iPhone: Safari → Compartilhar → Adicionar à Tela de Início).</p>') +
     sec('⚙️ Opções', lista([
       'Música, efeitos e vibração.',
       '<b>Gráficos:</b> Automático, Alta ou Leve. Celular travando? Use <b>Leve</b>.',
@@ -114,7 +116,24 @@ window.INFO = (function () {
     '<a class="link zap" href="' + WHATSAPP + '" target="_blank" rel="noopener">💬 WHATSAPP<small>Fale com a Coisas 3D</small></a></div>' +
     sec('Aviso', '<p>Projeto <b>sem fins lucrativos</b>, uma homenagem divertida aos membros do clube. A arte em pixel e as músicas foram feitas especialmente para o jogo.</p>');
 
-  const PAINEIS = { jogar: ['COMO JOGAR', COMO_JOGAR], novidades: ['NOVIDADES', NOVIDADES], sobre: ['SOBRE', SOBRE] };
+  const INSTALAR =
+    sec('📲 Instale o jogo no celular', '<p>Instalado, o <b>Black Rock MC - The Game</b> ganha um ícone na tela inicial e abre em tela cheia, sem precisar da tag NFC nem do navegador.</p>') +
+    sec('Android (Chrome)', lista([
+      'Toque no botão laranja <b>📲 INSTALAR</b> na tela inicial do jogo e confirme em <b>Instalar</b>.',
+      'Se o botão só mostrar esta ajuda: abra o menu <b>⋮</b> do Chrome e toque em <b>Instalar app</b> ou <b>Adicionar à tela inicial</b>.'
+    ])) +
+    sec('iPhone (Safari)', lista([
+      'Abra o jogo no <b>Safari</b> (no iPhone só funciona pelo Safari).',
+      'Toque em <b>Compartilhar</b> (o quadrado com a seta para cima).',
+      'Escolha <b>Adicionar à Tela de Início</b>, confira o nome <b>Black Rock MC - The Game</b> e toque em <b>Adicionar</b>.'
+    ])) +
+    sec('Bom saber', lista([
+      'O jogo instalado se atualiza sozinho quando sai versão nova.',
+      'Os modos sozinho funcionam até sem internet. O ranking global e os 2 jogadores precisam de internet.',
+      'Seu nome, recordes e conquistas continuam os mesmos.'
+    ]));
+
+  const PAINEIS = { instalar: ['INSTALAR O JOGO', INSTALAR], jogar: ['COMO JOGAR', COMO_JOGAR], novidades: ['NOVIDADES', NOVIDADES], sobre: ['SOBRE', SOBRE] };
   const el = document.getElementById('painel'), corpo = document.getElementById('painel-corpo'), titulo = document.getElementById('painel-titulo');
   function abrir(tipo) {
     const p = PAINEIS[tipo]; if (!p) return;

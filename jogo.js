@@ -2087,7 +2087,22 @@ function alternarPausa() {
 // ============================================================ HTML / CONVITE P2
 const elControles = document.getElementById('controles'), btnPausa = document.getElementById('btn-pausa');
 const ehToque = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
-function atualizarHTML() { document.body.classList.toggle('inclinar', INCL.on && INCL.ok); const corr = estado.nome === 'corrida'; elControles.classList.toggle('on', corr && ehToque && !pausado && !(CLIENTE && cliModo === 'controle')); btnPausa.classList.toggle('on', corr && !pausado); }
+function atualizarHTML() { document.body.classList.toggle('inclinar', INCL.on && INCL.ok); atualizarInstalar(); const corr = estado.nome === 'corrida'; elControles.classList.toggle('on', corr && ehToque && !pausado && !(CLIENTE && cliModo === 'controle')); btnPausa.classList.toggle('on', corr && !pausado); }
+// ============================================================ INSTALAR NO CELULAR (app na tela inicial, sem precisar da tag NFC)
+const btnInstalar = document.getElementById('btn-instalar');
+let pedidoInstalar = null;
+const instalado = () => matchMedia('(display-mode: fullscreen)').matches || matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+function atualizarInstalar() {
+  const tela = estado && (estado.nome === 'titulo' || estado.nome === 'abertura');
+  btnInstalar.classList.toggle('on', !!tela && !CLIENTE && !instalado() && (!!pedidoInstalar || ehIOS || ehToque));
+}
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); pedidoInstalar = e; atualizarInstalar(); });
+addEventListener('appinstalled', () => { pedidoInstalar = null; atualizarInstalar(); avisar('JOGO INSTALADO! PROCURE O ÍCONE NA TELA INICIAL'); });
+btnInstalar.addEventListener('click', () => {
+  SOM.iniciar();
+  if (pedidoInstalar) { const p = pedidoInstalar; pedidoInstalar = null; p.prompt(); p.userChoice.then(r => { if (r.outcome !== 'accepted') pedidoInstalar = p; atualizarInstalar(); }).catch(() => {}); return; }
+  INFO.abrir('instalar');   // iPhone e navegadores sem o botão automático: mostra o passo a passo
+});
 btnPausa.addEventListener('click', () => CLIENTE ? enviarHost({ b: 'pausa' }) : alternarPausa());
 function avisar(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; clearTimeout(avisar.t); avisar.t = setTimeout(() => t.style.display = 'none', 3000); }
 // ============================================================ 2 JOGADORES EM REDE
