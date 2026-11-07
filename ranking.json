@@ -1,7 +1,15 @@
 {
  "temporada": 2,
- "atualizado": null,
- "viagem": [],
+ "atualizado": "2026-11-07T19:38:22.464Z",
+ "viagem": [
+  {
+   "n": "YBEMMM GY",
+   "p": "jefao",
+   "t": 660,
+   "m": 7,
+   "d": "2026-11-07"
+  }
+ ],
  "cafe": [],
  "relogio": []
 }
